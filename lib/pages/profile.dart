@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart'; 
+import 'profile_ui.dart'; 
 
 class Profile extends StatefulWidget {
   @override
@@ -9,7 +10,8 @@ class _DashboardState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text('Profile')
+      child: ProfilePage() 
+      
     );
   }
 }

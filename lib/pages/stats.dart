@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart'; 
+import 'second_screen.dart'; 
 
 class Stats extends StatefulWidget {
   @override
@@ -9,7 +10,7 @@ class _DashboardState extends State<Stats> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text('Stats')
+      child: SecondTab()
     );
   }
 }

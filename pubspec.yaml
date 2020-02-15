@@ -22,8 +22,9 @@ dependencies:
     sdk: flutter
   flare_flutter: ^1.8.3 
   google_fonts: ^0.3.9
-  bottom_navy_bar: ^5.3.2
-  intl: ^0.16.1
+  bottom_navy_bar: ^5.3.2 
+  line_awesome_icons: ^1.0.4+2
+
 
 
 dev_dependencies:
@@ -37,8 +38,16 @@ dev_dependencies:
 # The following section is specific to Flutter.
 flutter:
   assets:
-    - assets/images/background.png
-    - assets/dog.flr
+   - assets/images/background.png
+   - assets/dog.flr 
+   - assets/beach1.jpg
+   - assets/beach2.jpg
+   - assets/beach3.jpg
+   - assets/chris.jpg
+   - assets/speechbubble.png
+   - assets/navarrow.png
+   - assets/chatbubble.png
+   - assets/fav.png
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
