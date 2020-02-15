@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_picker/flutter_picker.dart';
+import 'package:flutter_picker/flutter_picker.dart'; 
+import 'package:google_fonts/google_fonts.dart';
+
 
 import 'profile.dart';
 import 'dashboard.dart';
@@ -26,33 +28,65 @@ class HomePage extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(255,193,69,1),
+      backgroundColor: Color.fromRGBO(45,47,76,1),
       body: PageStorage(
         child: Stack(
           children: <Widget>[
             ListView(
+              children: <Widget>[ 
+          SizedBox(height: 25.0),
+          Padding(
+            padding: EdgeInsets.only(left: 30.0),
+            child: Row(
               children: <Widget>[
-                SizedBox(height: 100.0),
-                Container(
-                  height: MediaQuery.of(context).size.height - 185.0,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(topLeft: Radius.circular(75.0)),
-                  ),
-                ),
-              ]
-            ),
-            currentScreen //Draws current page based on 
-          ],
-        ),
-        bucket: bucket,
-      ),
+                Text("Let's get working now.",
+                    style: GoogleFonts.lora(
+                        fontWeight: FontWeight.w700, 
+                        color: Colors.white,
+                        fontSize: 30.0)),
+              ], 
+            ), 
+          ),    
+          SizedBox(height: 20.0),  
+          Padding(
+            padding: EdgeInsets.only(left: 30.0),
+            child: Row(
+              children: <Widget>[ 
+                FlatButton ( 
+                  child: Icon(Icons.add), 
+                  color: Color.fromRGBO(184,184,209,1), 
+                  onPressed: () {showPickerDateRange(context);},// this should pull up the timer
+                  shape: StadiumBorder(),
+            )
+                ,
+              ], 
+            ), 
+          ),  
+          
+          SizedBox(height: 20.0),  
+
+          Container(
+            height: MediaQuery.of(context).size.height - 185.0,
+            decoration: BoxDecoration(
+                color:Colors.white, // Color.fromRGBO(251, 243, 217, 1),
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(30.0), topRight: Radius.circular(30.0)),
+              ),
+            ), 
+            
+           ]
+         ),
+      currentScreen //Draws current page based on 
+     ],
+   ),
+ bucket: bucket,
+ ),
       
       //////////////////////////////////////////
       //Bottom Bar Stuff////////////////////////
       //////////////////////////////////////////
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: Icon(Icons.add), 
+        backgroundColor: Color.fromRGBO(184,184,209,1), 
         onPressed: () {showPickerDateRange(context);},
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -84,13 +118,13 @@ class HomePage extends State<Home> {
                       children: <Widget>[
                         Icon(
                           Icons.home,
-                          color: currentTab == 0 ? Colors.blue : Colors.grey,
+                          color: currentTab == 0 ? Color.fromRGBO(45,47,76,1) : Colors.grey,
                         ),
                       ],
                     ),
                   ),
                   MaterialButton(
-                    shape: new CircleBorder(),
+                    shape: new CircleBorder(), 
                     minWidth: 75,
                     onPressed: () {
                       setState(() {
@@ -105,7 +139,7 @@ class HomePage extends State<Home> {
                       children: <Widget>[
                         Icon(
                           Icons.chat,
-                          color: currentTab == 1 ? Colors.blue : Colors.grey,
+                          color: currentTab == 1 ? Color.fromRGBO(205,136,63,1) : Colors.grey,
                         ),
                       ],
                     ),
@@ -116,7 +150,7 @@ class HomePage extends State<Home> {
               // Right Tab bar icons
 
               Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start, 
                 children: <Widget>[
                   MaterialButton(
                     shape: new CircleBorder(),
@@ -134,7 +168,7 @@ class HomePage extends State<Home> {
                       children: <Widget>[
                         Icon(
                           Icons.dashboard,
-                          color: currentTab == 2 ? Colors.blue : Colors.grey,
+                          color: currentTab == 2 ? Color.fromRGBO(205,136,63,1) : Colors.grey,
                         ),
                       ],
                     ),
@@ -155,7 +189,7 @@ class HomePage extends State<Home> {
                       children: <Widget>[
                         Icon(
                           Icons.supervisor_account,
-                          color: currentTab == 3 ? Colors.blue : Colors.grey,
+                          color: currentTab == 3 ? Color.fromRGBO(205,136,63,1) : Colors.grey,
                         ),
                       ],
                     ),
