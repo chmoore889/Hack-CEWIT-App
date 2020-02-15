@@ -26,19 +26,23 @@ class HomePage extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFF21BFBD),
       body: PageStorage(
         child: Stack(
           children: <Widget>[
-            Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage("assets/images/background.png"),
-                  fit: BoxFit.cover,
+            ListView(
+              children: <Widget>[
+                SizedBox(height: 100.0),
+                Container(
+                  height: MediaQuery.of(context).size.height - 200,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(topLeft: Radius.circular(75.0)),
+                  ),
                 ),
-              ),
-              child: null,
+              ]
             ),
-            currentScreen
+            currentScreen //Draws current page
           ],
         ),
         bucket: bucket,
