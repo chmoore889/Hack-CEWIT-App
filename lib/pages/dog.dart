@@ -13,8 +13,8 @@ class _DogAnimation1 extends State<DogAnimation1> {
     return Container(
       height: 400,
       child:FlareActor(
-        "assets/dog_1.flr",
-        animation: "dog_1",
+        "assets/level1.flr",
+        animation: "animation1",
         fit:BoxFit.contain,
       )
     );
@@ -35,8 +35,8 @@ class _DogAnimation2 extends State<DogAnimation2> {
     return Container(
       height: 400,
       child:FlareActor(
-        "assets/dog_2.flr",
-        animation: "dog_2",
+        "assets/level2.flr",
+        animation: "animation2",
         fit:BoxFit.contain,
       )
     );
@@ -58,8 +58,8 @@ class _DogAnimation3 extends State<DogAnimation3> {
     return Container(
       height: 400,
       child:FlareActor(
-        "assets/dog_3.flr",
-        animation: "dog_3",
+        "assets/level3.flr",
+        animation: "animation3",
         fit:BoxFit.contain,
       )
     );
@@ -80,8 +80,8 @@ class _DogAnimation4 extends State<DogAnimation4> {
     return Container(
       height: 400,
       child:FlareActor(
-        "assets/dog_4.flr",
-        animation: "dog_4",
+        "assets/level4.flr",
+        animation: "animation4",
         fit:BoxFit.contain,
       )
     );
@@ -102,8 +102,8 @@ class _DogAnimation5 extends State<DogAnimation5> {
     return Container(
       height: 400,
       child:FlareActor(
-        "assets/dog_5.flr",
-        animation: "dog_5",
+        "assets/level4.flr",
+        animation: "animation4",
         fit:BoxFit.contain,
       )
     );
@@ -124,8 +124,8 @@ class _DogAnimation6 extends State<DogAnimation6> {
     return Container(
       height: 400,
       child:FlareActor(
-        "assets/dog_5.flr",
-        animation: "dog_5",
+        "assets/hat.flr",
+        animation: "hatanimation",
         fit:BoxFit.contain,
       )
     );
