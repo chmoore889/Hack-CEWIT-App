@@ -18,7 +18,7 @@ class Home extends StatefulWidget {
   HomePage createState() => HomePage();
 }
 
-class HomePage extends State<Home> {
+class HomePage extends State<Home> with WidgetsBindingObserver{
   static int minutes = 0;
   static int hours = 0;
 
@@ -90,16 +90,39 @@ class HomePage extends State<Home> {
     );
   }
 
+    void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    switch(state){
+      case AppLifecycleState.paused:
+        print('paused state');
+        break;
+      case AppLifecycleState.resumed:
+        print('resumed state');
+        break;
+      case AppLifecycleState.inactive:
+        print('inactive state');
+        break;
+     // case AppLifecycleState.suspended:
+       // print('suspending state');
+        //break; 
+      case AppLifecycleState.detached: 
+        print("detached state"); 
+        break; 
+    }
+  }
+
   @override
   void initState() {
     super.initState();
     _pageController = PageController();
+    WidgetsBinding.instance.addObserver(this);
   }
 
   @override
   void dispose() {
     _timer.cancel();
     _pageController.dispose();
+    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 

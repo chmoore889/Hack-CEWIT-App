@@ -41,7 +41,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 style: TextStyle(fontFamily: 'Montserrat', color: Colors.grey),
               ),
               Padding(
-                padding: EdgeInsets.all(30.0),
+                padding: EdgeInsets.all(25.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
@@ -102,22 +102,8 @@ class _ProfilePageState extends State<ProfilePage> {
                   ],
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(left: 15.0),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    IconButton(icon: Icon(Icons.table_chart)),
-                    IconButton(
-                      icon: Icon(Icons.menu),
-                      onPressed: () {},
-                    )
-                  ],
-                ),
-              ),
               buildImages(),
-              buildInfoDetail(),
-            
+              buildInfoDetail(),  
             ],
           )
         ],
