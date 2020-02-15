@@ -20,6 +20,7 @@ dependencies:
   flutter_picker: ^1.1.0
   flutter:
     sdk: flutter
+  flare_flutter: ^1.8.3
 
 dev_dependencies:
   flutter_test:
@@ -33,6 +34,7 @@ dev_dependencies:
 flutter:
   assets:
     - assets/images/background.png
+    - assets/dog.flr
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

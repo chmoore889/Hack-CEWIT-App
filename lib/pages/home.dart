@@ -16,6 +16,7 @@ class Home extends StatefulWidget  {
 class HomePage extends State<Home> {
 
   int minutes = 0;
+  int hours = 0;
 
   int currentTab = 0;
   Widget currentScreen = Dashboard();
@@ -23,14 +24,18 @@ class HomePage extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/images/background.png"),
-            fit: BoxFit.cover,
+      body: Stack(
+        children: <Widget>[
+          Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/images/background.png"),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: null,
           ),
-        ),
-        child: null,
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
@@ -156,6 +161,10 @@ class HomePage extends State<Home> {
       onConfirm: (Picker picker, List value) {
         print(value.toString());
         print(picker.getSelectedValues());
+        hours = value[0];
+        minutes = value[1];
+        print(hours);
+        print(minutes);
       }
     );
 

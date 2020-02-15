@@ -1,16 +1,22 @@
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
-class Dashboard extends StatefulWidget {
-  @override
-  _DashboardState createState() => _DashboardState();
-}
 
-class _DashboardState extends State<Dashboard> {
+class Dashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Dashboard'),
+      body: Stack(
+        children: <Widget>[
+          Center (
+            child: FlareActor(
+              "assets/dog.flr",
+              animation:"Untitled",
+              fit: BoxFit.contain,
+            ),
+          ),
+        ],
       ),
     );
   }
