@@ -8,10 +8,8 @@ class Character extends StatefulWidget {
 class _DashboardState extends State<Character> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Character'),
-      ),
+    return Center(
+      child: Text('Character')
     );
   }
 }
