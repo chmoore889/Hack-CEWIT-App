@@ -56,78 +56,78 @@ class HomePage extends State<Home> {
       backgroundColor: Color.fromRGBO(138, 145, 255, 1),
       body: Stack(
         children: <Widget>[
-          ListView(children: <Widget>[
-            SizedBox(height: 25.0),
-            Padding(
-              padding: EdgeInsets.only(left: 0),
-              child: Column(
-                children: <Widget>[
-                  AnimatedContainer(
-                    width: 300.0,
-                    height: 150.0,
-                    decoration: BoxDecoration ( 
-                    borderRadius: BorderRadius.circular(25.0),  
-                    color: Color.fromRGBO(39, 42, 86, 1), 
-                      boxShadow: [
-                        new BoxShadow(
-                          color: Color.fromRGBO(184, 184, 209, 1),
-                          offset: new Offset(5, -5),
-                        )
-                      ], 
-                    ), 
-                    alignment: Alignment.center,
-                    duration: Duration(seconds: 3),
-                    curve: Curves.fastOutSlowIn,  
-                    child: Column (
-                      children: <Widget> [
-                        SizedBox(height: 20.0),
-                        Text("Let's get to work!",
-                          style: GoogleFonts.lato( 
-                            color: Colors.white, 
-                            fontSize: 30.0, 
-                            fontWeight: FontWeight.w700) 
-                        ),   
-                        SizedBox(height: 20.0),
-                        FlatButton( 
-                          child: Icon(Icons.add), 
-                          color: Color.fromRGBO(184,184,209,1), 
-                          onPressed: () {
-                            setState(() {
-                              showPickerDateRange(context);
-                              print("+ button pressed");
-                            });
-                          },// this should pull up the timer
-                          shape: StadiumBorder(),
-                        ) 
-                      ],
-                    )
-                  )
-                ]
-              ),
-            ),
-            SizedBox(height: 20.0),
-            Container(
-              height: MediaQuery.of(context).size.height - 185.0,
-              decoration: BoxDecoration(
-                color: Colors.white, // Color.fromRGBO(251, 243, 217, 1),
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(40.0),
-                  topRight: Radius.circular(40.0)),
-              ),
-            ),
-          ]),
-          PageView(
-            controller: _pageController,
-            onPageChanged: (index) {
-              pageChanged(index);
-            },
+          Column(
             children: <Widget>[
-              Dashboard(),
-              Character(),
-              Stats(),
-              Profile(),
-            ],
-          )
+              SizedBox(height: 45.0),
+              Padding(
+                padding: EdgeInsets.only(left: 0),
+                child: Column(
+                  children: <Widget>[
+                    AnimatedContainer(
+                      width: 300.0,
+                      height: 150.0,
+                      decoration: BoxDecoration ( 
+                      borderRadius: BorderRadius.circular(25.0),  
+                      color: Color.fromRGBO(39, 42, 86, 1), 
+                        boxShadow: [
+                          new BoxShadow(
+                            color: Color.fromRGBO(184, 184, 209, 1),
+                            offset: new Offset(5, -5),
+                          )
+                        ], 
+                      ), 
+                      alignment: Alignment.center,
+                      duration: Duration(seconds: 3),
+                      curve: Curves.fastOutSlowIn,  
+                      child: Column (
+                        children: <Widget> [
+                          SizedBox(height: 20.0),
+                          Text("Let's get to work!",
+                            style: GoogleFonts.lato( 
+                              color: Colors.white, 
+                              fontSize: 30.0, 
+                              fontWeight: FontWeight.w700
+                            )
+                          ),
+                          SizedBox(height: 20.0),
+                          FlatButton( 
+                            child: Text("Rohan is hot as hell"),//Icon(Icons.add), 
+                            color: Color.fromRGBO(184,184,209,1), 
+                            onPressed: () {
+                              showPickerDateRange(context);
+                            },
+                            shape: StadiumBorder(),
+                          ),
+                        ],
+                      )
+                    )
+                  ]
+                ),
+              ),
+              SizedBox(height: 20.0),
+              Container(
+                child: PageView(
+                  controller: _pageController,
+                  onPageChanged: (index) {
+                    pageChanged(index);
+                  },
+                  children: <Widget>[
+                    Dashboard(),
+                    Character(),
+                    Stats(),
+                    Profile(),
+                  ],
+                ),
+                height: MediaQuery.of(context).size.height - 271.0,
+                decoration: BoxDecoration(
+                  color: Colors.white, // Color.fromRGBO(251, 243, 217, 1),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(40.0),
+                    topRight: Radius.circular(40.0)),
+                ),
+              ),
+            ]
+          ),
         ],
       ),
 
@@ -150,7 +150,7 @@ class HomePage extends State<Home> {
     );
   }
 
-  showPickerDateRange(BuildContext context) {
+  void showPickerDateRange(BuildContext context) {
     Picker timeSel = new Picker(
         hideHeader: true,
         adapter: PickerDataAdapter<String>(
