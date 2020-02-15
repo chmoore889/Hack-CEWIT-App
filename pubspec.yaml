@@ -20,7 +20,9 @@ dependencies:
   flutter_picker: ^1.1.0
   flutter:
     sdk: flutter
-  flare_flutter: ^1.8.3
+  flare_flutter: ^1.8.3 
+  google_fonts: ^0.3.9
+
 
 dev_dependencies:
   flutter_test:
