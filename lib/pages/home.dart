@@ -21,22 +21,32 @@ class HomePage extends State<Home> {
   int currentTab = 0;
   Widget currentScreen = Dashboard();
 
+  final PageStorageBucket bucket = PageStorageBucket();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("assets/images/background.png"),
-                fit: BoxFit.cover,
+      body: PageStorage(
+        child: Stack(
+          children: <Widget>[
+            Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/images/background.png"),
+                  fit: BoxFit.cover,
+                ),
               ),
+              child: null,
             ),
-            child: null,
-          ),
-        ],
+            currentScreen
+          ],
+        ),
+        bucket: bucket,
       ),
+      
+      //////////////////////////////////////////
+      //Bottom Bar Stuff////////////////////////
+      //////////////////////////////////////////
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {showPickerDateRange(context);},
@@ -62,6 +72,7 @@ class HomePage extends State<Home> {
                         currentScreen =
                             Dashboard(); // if user taps on this dashboard tab will be active
                         currentTab = 0;
+                        print(currentScreen);
                       });
                     },
                     child: Column(
@@ -82,6 +93,7 @@ class HomePage extends State<Home> {
                         currentScreen =
                             Character(); // if user taps on this dashboard tab will be active
                         currentTab = 1;
+                        print(currentScreen);
                       });
                     },
                     child: Column(
@@ -110,6 +122,7 @@ class HomePage extends State<Home> {
                         currentScreen =
                             Stats(); // if user taps on this dashboard tab will be active
                         currentTab = 2;
+                        print(currentScreen);
                       });
                     },
                     child: Column(
@@ -130,6 +143,7 @@ class HomePage extends State<Home> {
                         currentScreen =
                             Profile(); // if user taps on this dashboard tab will be active
                         currentTab = 3;
+                        print(currentScreen);
                       });
                     },
                     child: Column(
