@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_picker/flutter_picker.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 import 'profile.dart';
 import 'dashboard.dart';
@@ -16,13 +19,76 @@ class Home extends StatefulWidget {
 }
 
 class HomePage extends State<Home> {
-  int minutes = 0;
-  int hours = 0;
+  static int minutes = 0;
+  static int hours = 0;
+
+  var formatter = new NumberFormat("00", "en_US");
+
+  static int totalSeconds = minutes*60+hours*3600;
+
+  int remSeconds = 0;
+  int remMinutes = 0;
+  int remHours = 0;
 
   PageController _pageController;
+  Timer _timer;
 
   int _currentIndex = 0;
   Widget currentScreen = Dashboard();
+
+  void startTimer() {
+    totalSeconds = minutes*60+hours*3600;
+    _timer.cancel();
+    
+    const oneSec = const Duration(seconds: 1);
+    _timer = new Timer.periodic(oneSec, (Timer timer) => setState(() {
+      if (totalSeconds < 1) {
+        timer.cancel();
+        //timerEnd();
+      }
+      else {
+        totalSeconds = totalSeconds - 1;
+        remHours = (totalSeconds/3600).floor();
+        remMinutes = ((totalSeconds - remHours*3600)/60).floor();
+        remSeconds = totalSeconds - remMinutes*60 - remHours*3600;
+        print(totalSeconds);
+      }
+    }));
+  }
+
+  void timerForceEnd() {
+    List<Widget> actions = [
+      FlatButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: new Text(PickerLocalizations.of(context).cancelText)),
+      FlatButton(
+          onPressed: () {
+            setState((){
+              Navigator.pop(context);
+              _timer.cancel();
+              remMinutes = 0;
+              remSeconds = 0;
+              remHours = 0;
+            });
+          },
+          child: new Text(PickerLocalizations.of(context).confirmText))
+    ];
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return new AlertDialog(
+          title: Text("Confirm"),
+          actions: actions,
+          content: Container(
+            child: Text("Are you sure you want to end your session?\n\nAll progress will be lost.")
+          ),
+        );
+      }
+    );
+  }
 
   @override
   void initState() {
@@ -32,6 +98,7 @@ class HomePage extends State<Home> {
 
   @override
   void dispose() {
+    _timer.cancel();
     _pageController.dispose();
     super.dispose();
   }
@@ -41,7 +108,6 @@ class HomePage extends State<Home> {
       _currentIndex = index;
     });
   }
-
   
   void bottomTapped(int index) {
     setState(() {
@@ -52,6 +118,11 @@ class HomePage extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    if(_timer == null) {
+      _timer = Timer.periodic(Duration(seconds:0), null);
+      print("null init");
+      _timer.cancel();
+    }
     return Scaffold(
       backgroundColor: Color.fromRGBO(138, 145, 255, 1),
       body: Stack(
@@ -82,19 +153,19 @@ class HomePage extends State<Home> {
                       child: Column (
                         children: <Widget> [
                           SizedBox(height: 20.0),
-                          Text("Let's get to work!",
+                          Text(!_timer.isActive ? ("Let's get to work!") : (formatter.format(remHours) + ":" + formatter.format(remMinutes) + ":" + formatter.format(remSeconds)),
                             style: GoogleFonts.lato( 
                               color: Colors.white, 
-                              fontSize: 30.0, 
+                              fontSize: !_timer.isActive ? 35 : 50.0, 
                               fontWeight: FontWeight.w700
                             )
                           ),
-                          SizedBox(height: 20.0),
-                          FlatButton( 
-                            child: Text("Rohan is hot as hell"),//Icon(Icons.add), 
+                          SizedBox(height: !_timer.isActive ? 20 : 10),
+                          FlatButton(
+                            child: !_timer.isActive ? Icon(Icons.add, size: 50) : Text("Stop"),
                             color: Color.fromRGBO(184,184,209,1), 
                             onPressed: () {
-                              showPickerDateRange(context);
+                              !_timer.isActive ? showPickerDateRange(context) : timerForceEnd();
                             },
                             shape: StadiumBorder(),
                           ),
@@ -164,6 +235,7 @@ class HomePage extends State<Home> {
           minutes = value[1];
           print(hours);
           print(minutes);
+          startTimer();
         });
 
     List<Widget> actions = [
