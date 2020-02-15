@@ -26,7 +26,7 @@ class HomePage extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF21BFBD),
+      backgroundColor: Color.fromRGBO(255,193,69,1),
       body: PageStorage(
         child: Stack(
           children: <Widget>[
@@ -42,7 +42,7 @@ class HomePage extends State<Home> {
                 ),
               ]
             ),
-            currentScreen //Draws current page
+            currentScreen //Draws current page based on 
           ],
         ),
         bucket: bucket,
