@@ -124,7 +124,7 @@ class HomePage extends State<Home> {
       _timer.cancel();
     }
     return Scaffold(
-      backgroundColor: Color.fromRGBO(138, 145, 255, 1),
+      backgroundColor: Color.fromRGBO(39, 42, 86, 1),
       body: Stack(
         children: <Widget>[
           Column(
@@ -139,10 +139,10 @@ class HomePage extends State<Home> {
                       height: 150.0,
                       decoration: BoxDecoration ( 
                       borderRadius: BorderRadius.circular(25.0),  
-                      color: Color.fromRGBO(39, 42, 86, 1), 
+                      color: Color.fromRGBO(205, 136, 63, 1), 
                         boxShadow: [
                           new BoxShadow(
-                            color: Color.fromRGBO(184, 184, 209, 1),
+                            color: Color.fromRGBO(251, 243, 217, 1),
                             offset: new Offset(5, -5),
                           )
                         ], 
@@ -157,13 +157,13 @@ class HomePage extends State<Home> {
                             style: GoogleFonts.lato( 
                               color: Colors.white, 
                               fontSize: !_timer.isActive ? 35 : 50.0, 
-                              fontWeight: FontWeight.w700
+                              fontWeight: FontWeight.w900
                             )
                           ),
                           SizedBox(height: !_timer.isActive ? 20 : 10),
                           FlatButton(
-                            child: !_timer.isActive ? Icon(Icons.add, size: 50) : Text("Stop"),
-                            color: Color.fromRGBO(184,184,209,1), 
+                            child: !_timer.isActive ? Icon(Icons.add, size: 50, color: Color.fromRGBO(39, 42, 86, 1)) : Text("Stop"),
+                            color: Colors.white,
                             onPressed: () {
                               !_timer.isActive ? showPickerDateRange(context) : timerForceEnd();
                             },
