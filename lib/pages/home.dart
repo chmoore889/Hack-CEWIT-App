@@ -34,7 +34,7 @@ class HomePage extends State<Home> {
               children: <Widget>[
                 SizedBox(height: 100.0),
                 Container(
-                  height: MediaQuery.of(context).size.height - 200,
+                  height: MediaQuery.of(context).size.height - 185.0,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(topLeft: Radius.circular(75.0)),
