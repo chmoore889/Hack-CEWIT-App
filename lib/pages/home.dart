@@ -1,6 +1,7 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_picker/flutter_picker.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'profile.dart';
 import 'dashboard.dart';
@@ -52,57 +53,66 @@ class HomePage extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(45, 47, 76, 1),
+      backgroundColor: Color.fromRGBO(138, 145, 255, 1),
       body: Stack(
         children: <Widget>[
           ListView(children: <Widget>[
             SizedBox(height: 25.0),
             Padding(
-              padding: EdgeInsets.only(left: 14.0),
-              child: Row(
+              padding: EdgeInsets.only(left: 0),
+              child: Column(
                 children: <Widget>[
                   AnimatedContainer(
-                    width: 385.0,
-                    height: 100.0,
-                    decoration: BoxDecoration(
-                        color: Colors.blue,
-                        borderRadius: BorderRadius.circular(25.0)),
+                    width: 300.0,
+                    height: 150.0,
+                    decoration: BoxDecoration ( 
+                    borderRadius: BorderRadius.circular(25.0),  
+                    color: Color.fromRGBO(39, 42, 86, 1), 
+                      boxShadow: [
+                        new BoxShadow(
+                          color: Color.fromRGBO(184, 184, 209, 1),
+                          offset: new Offset(5, -5),
+                        )
+                      ], 
+                    ), 
                     alignment: Alignment.center,
-                    duration: Duration(seconds: 2),
-                    curve: Curves.fastOutSlowIn,
-                    // child: FlutterLogo(size: 75),
-                  ),
-                  /*Text("Let's get working now.",
-                  style: GoogleFonts.lora(
-                      fontWeight: FontWeight.w700, 
-                      color: Colors.white,
-                      fontSize: 30.0)), */
-                ],
+                    duration: Duration(seconds: 3),
+                    curve: Curves.fastOutSlowIn,  
+                    child: Column (
+                      children: <Widget> [
+                        SizedBox(height: 20.0),
+                        Text("Let's get to work!",
+                          style: GoogleFonts.lato( 
+                            color: Colors.white, 
+                            fontSize: 30.0, 
+                            fontWeight: FontWeight.w700) 
+                        ),   
+                        SizedBox(height: 20.0),
+                        FlatButton( 
+                          child: Icon(Icons.add), 
+                          color: Color.fromRGBO(184,184,209,1), 
+                          onPressed: () {
+                            setState(() {
+                              showPickerDateRange(context);
+                              print("+ button pressed");
+                            });
+                          },// this should pull up the timer
+                          shape: StadiumBorder(),
+                        ) 
+                      ],
+                    )
+                  )
+                ]
               ),
             ),
-            /*Padding(
-          padding: EdgeInsets.only(left: 30.0),
-          child: Row(
-            children: <Widget>[ 
-              FlatButton ( 
-                child: Icon(Icons.add), 
-                color: Color.fromRGBO(184,184,209,1), 
-                onPressed: () {showPickerDateRange(context);},// this should pull up the timer
-                shape: StadiumBorder(),
-          )
-              ,
-            ], 
-          ), 
-        ),*/
-
             SizedBox(height: 20.0),
             Container(
               height: MediaQuery.of(context).size.height - 185.0,
               decoration: BoxDecoration(
                 color: Colors.white, // Color.fromRGBO(251, 243, 217, 1),
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30.0),
-                  topRight: Radius.circular(30.0)),
+                  topLeft: Radius.circular(40.0),
+                  topRight: Radius.circular(40.0)),
               ),
             ),
           ]),
@@ -131,10 +141,10 @@ class HomePage extends State<Home> {
           print(index);
         },
         items: <BottomNavyBarItem>[
-          BottomNavyBarItem(title: Text('Home'), icon: Icon(Icons.home)),
-          BottomNavyBarItem(title: Text('Accessories'), icon: Icon(Icons.pets)),
-          BottomNavyBarItem(title: Text('Stats'), icon: Icon(Icons.insert_chart)),
-          BottomNavyBarItem(title: Text('Profile'), icon: Icon(Icons.person)),
+          BottomNavyBarItem(title: Text('Home'), icon: Icon(Icons.home), activeColor: Color.fromRGBO(39, 42, 86, 1)),
+          BottomNavyBarItem(title: Text('Accessories'), icon: Icon(Icons.pets), activeColor: Color.fromRGBO(39, 42, 86, 1)),
+          BottomNavyBarItem(title: Text('Stats'), icon: Icon(Icons.insert_chart), activeColor: Color.fromRGBO(39, 42, 86, 1)),
+          BottomNavyBarItem(title: Text('Profile'), icon: Icon(Icons.person), activeColor: Color.fromRGBO(39, 42, 86, 1)),
         ],
       ),
     );
@@ -171,22 +181,23 @@ class HomePage extends State<Home> {
     ];
 
     showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return new AlertDialog(
-            title: Text("Set Timer"),
-            actions: actions,
-            content: Container(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Text("Hours:                 Minutes:"),
-                  timeSel.makePicker(),
-                ],
-              ),
+      context: context,
+      builder: (BuildContext context) {
+        return new AlertDialog(
+          title: Text("Set Timer"),
+          actions: actions,
+          content: Container(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Text("Hours:                 Minutes:"),
+                timeSel.makePicker(),
+              ],
             ),
-          );
-        });
+          ),
+        );
+      }
+    );
   }
 }
