@@ -109,3 +109,27 @@ class _DogAnimation5 extends State<DogAnimation5> {
     );
   }
 }
+
+//////////////////////////////////////////////////////////////////////////
+
+class DogAnimation6 extends StatefulWidget {
+  @override
+  _DogAnimation6 createState() => _DogAnimation6();
+}
+
+
+class _DogAnimation6 extends State<DogAnimation6> { 
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 400,
+      child:FlareActor(
+        "assets/dog_5.flr",
+        animation: "dog_5",
+        fit:BoxFit.contain,
+      )
+    );
+  }
+}
+
+/////////////////////////////////////////////////////////////////////////
