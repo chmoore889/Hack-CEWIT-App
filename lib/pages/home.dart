@@ -1,7 +1,6 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_picker/flutter_picker.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'profile.dart';
 import 'dashboard.dart';
@@ -29,11 +28,25 @@ class HomePage extends State<Home> {
     super.initState();
     _pageController = PageController();
   }
-  
+
   @override
   void dispose() {
-    //_pageController.dispose();
+    _pageController.dispose();
     super.dispose();
+  }
+
+  void pageChanged(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+
+  
+  void bottomTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+      _pageController.animateToPage(index, duration: Duration(milliseconds: 500), curve: Curves.ease);
+    });
   }
 
   @override
@@ -51,13 +64,12 @@ class HomePage extends State<Home> {
                   AnimatedContainer(
                     width: 385.0,
                     height: 100.0,
-                   decoration: BoxDecoration ( 
-                     color: Colors.blue, 
-                     borderRadius: BorderRadius.circular(25.0)
-                   ),
+                    decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(25.0)),
                     alignment: Alignment.center,
                     duration: Duration(seconds: 2),
-                    curve: Curves.fastOutSlowIn, 
+                    curve: Curves.fastOutSlowIn,
                     // child: FlutterLogo(size: 75),
                   ),
                   /*Text("Let's get working now.",
@@ -89,21 +101,22 @@ class HomePage extends State<Home> {
               decoration: BoxDecoration(
                 color: Colors.white, // Color.fromRGBO(251, 243, 217, 1),
                 borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30.0),
-                    topRight: Radius.circular(30.0)),
+                  topLeft: Radius.circular(30.0),
+                  topRight: Radius.circular(30.0)),
               ),
             ),
           ]),
           PageView(
+            controller: _pageController,
             onPageChanged: (index) {
-              setState(() => _currentIndex = index);
+              pageChanged(index);
             },
             children: <Widget>[
               Dashboard(),
               Character(),
               Stats(),
               Profile(),
-          ],
+            ],
           )
         ],
       ),
@@ -114,26 +127,14 @@ class HomePage extends State<Home> {
       bottomNavigationBar: BottomNavyBar(
         selectedIndex: _currentIndex,
         onItemSelected: (index) {
-          setState(() => _currentIndex = index);
-          _pageController.jumpToPage(index);
+          bottomTapped(index);
+          print(index);
         },
         items: <BottomNavyBarItem>[
-          BottomNavyBarItem(
-            title: Text('Dashboard'),
-            icon: Icon(Icons.home)
-          ),
-          BottomNavyBarItem(
-            title: Text('Character'),
-            icon: Icon(Icons.apps)
-          ),
-          BottomNavyBarItem(
-            title: Text('Stats'),
-            icon: Icon(Icons.chat_bubble)
-          ),
-          BottomNavyBarItem(
-            title: Text('Profile'),
-            icon: Icon(Icons.settings)
-          ),
+          BottomNavyBarItem(title: Text('Home'), icon: Icon(Icons.home)),
+          BottomNavyBarItem(title: Text('Accessories'), icon: Icon(Icons.pets)),
+          BottomNavyBarItem(title: Text('Stats'), icon: Icon(Icons.insert_chart)),
+          BottomNavyBarItem(title: Text('Profile'), icon: Icon(Icons.person)),
         ],
       ),
     );
@@ -170,23 +171,22 @@ class HomePage extends State<Home> {
     ];
 
     showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return new AlertDialog(
-          title: Text("Set Timer"),
-          actions: actions,
-          content: Container(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Text("Hours:                 Minutes:"),
-                timeSel.makePicker(),
-              ],
+        context: context,
+        builder: (BuildContext context) {
+          return new AlertDialog(
+            title: Text("Set Timer"),
+            actions: actions,
+            content: Container(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Text("Hours:                 Minutes:"),
+                  timeSel.makePicker(),
+                ],
+              ),
             ),
-          ),
-        );
-      }
-    );
+          );
+        });
   }
 }
