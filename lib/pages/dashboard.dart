@@ -6,16 +6,20 @@ import 'dog.dart';
 import 'store_list.dart';
 import 'home.dart';
 
-class Dashboard extends StatelessWidget {
+class Dashboard extends StatefulWidget {
+  _Dashboard createState() => _Dashboard();
+}
+
+class _Dashboard extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Container (
       child: Column(
         children: <Widget>[
-          SizedBox(height: 20),
+          SizedBox(height: 10),
           Container(
-            height: 115,
-            padding: EdgeInsets.symmetric(vertical: 8.0),
+            height: 93,
+            padding: EdgeInsets.symmetric(horizontal: 8.0),
             child: Home.timerRunning()?TyperAnimatedTextKit(
               speed: Duration(milliseconds:  50),
               text: [

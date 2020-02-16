@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'store_list.dart'; 
 class Character extends StatefulWidget {
   @override
-  _DashboardState createState() => _DashboardState();
+  _Character createState() => _Character();
 }
 
-class _DashboardState extends State<Character> {
+class _Character extends State<Character> {
   @override
   Widget build(BuildContext context) {
     return Center(
