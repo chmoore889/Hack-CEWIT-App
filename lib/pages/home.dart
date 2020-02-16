@@ -120,7 +120,7 @@ class HomePage extends State<Home> with WidgetsBindingObserver{
           title: Text("Consequences"),
           actions: actions,
           content: Container(
-            child: Text("U suck at this game")
+            child: Text("You left the app. Your progress has been lost.")
           ),
         );
       }
@@ -138,7 +138,9 @@ class HomePage extends State<Home> with WidgetsBindingObserver{
         break;
       case AppLifecycleState.inactive:
         print('inactive state');
-        consequences();
+        if(_timer.isActive) {
+          consequences();
+        }
         break;
       case AppLifecycleState.detached: 
         print("detached state"); 
