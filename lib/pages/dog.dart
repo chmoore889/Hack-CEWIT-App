@@ -1,6 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flare_flutter/flare_actor.dart';
 
+
+class Hat extends StatefulWidget {
+  @override
+  _Hat createState() => _Hat();
+}
+
+class _Hat extends State<Hat> { 
+  @override
+  Widget build(BuildContext context) {
+    print("Hat");
+    return Container(
+      height: 400,
+      child:FlareActor(
+        "assets/hat.flr",
+        animation: "hat",
+        fit:BoxFit.contain,
+      )
+    );
+  }
+}
+
 class DogAnimation1 extends StatefulWidget {
   @override
   _DogAnimation1 createState() => _DogAnimation1();

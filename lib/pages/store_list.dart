@@ -1,14 +1,28 @@
 import 'FadeAnimation.dart';
-import 'Shoes.dart';
 import 'package:flutter/material.dart'; 
-class Store extends StatelessWidget {
+
+class Store extends StatefulWidget {
+  static bool doesHaveHat(){
+    return _Store.doesHaveHat();
+  }
+  static int getCount(){
+    return _Store.getCount();
+  }
+  _Store createState() => _Store();
+}
+class _Store extends State<Store> {
   static int _counter = 0;
+  static bool hasHat = false;
 
   static int getCount(){
     return _counter;
   }
 
-  void incrementCounter(){
+  static bool doesHaveHat(){
+    return hasHat;
+  }
+
+  static void incrementCounter(){
     _counter++;
     if(_counter>=4){
       _counter = 0;
@@ -51,7 +65,9 @@ class Store extends StatelessWidget {
       tag: tag,
       child: GestureDetector(
         onTap: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => Shoes(image: image,)));
+          setState(() {
+            hasHat=true;
+          });
         },
         child: Container(
           height: 250,
@@ -95,7 +111,7 @@ class Store extends StatelessWidget {
                     height: 35,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.white
+                      color: hasHat?Colors.green:Colors.white
                     ),
                     child: Center(
                       child: Icon(Icons.add, size: 20,),
@@ -115,7 +131,6 @@ class Store extends StatelessWidget {
       tag: tag,
       child: GestureDetector(
         onTap: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => Shoes(image: image,)));
         },
         child: Container(
           height: 250,
