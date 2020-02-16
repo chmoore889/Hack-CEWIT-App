@@ -10,7 +10,7 @@ class Hat extends StatefulWidget {
 class _Hat extends State<Hat> { 
   @override
   Widget build(BuildContext context) {
-    print("Hat");
+    //print("Hat");
     return Container(
       height: 400,
       child:FlareActor(
@@ -30,7 +30,7 @@ class DogAnimation1 extends StatefulWidget {
 class _DogAnimation1 extends State<DogAnimation1> { 
   @override
   Widget build(BuildContext context) {
-    print("1");
+    //print("1");
     return Container(
       height: 400,
       child:FlareActor(
@@ -53,7 +53,7 @@ class DogAnimation2 extends StatefulWidget {
 class _DogAnimation2 extends State<DogAnimation2> { 
   @override
   Widget build(BuildContext context) {
-    print("2");
+    //print("2");
     return Container(
       height: 400,
       child:FlareActor(
@@ -77,7 +77,7 @@ class DogAnimation3 extends StatefulWidget {
 class _DogAnimation3 extends State<DogAnimation3> { 
   @override
   Widget build(BuildContext context) {
-    print("3");
+    //print("3");
     return Container(
       height: 400,
       child:FlareActor(
@@ -100,7 +100,7 @@ class DogAnimation4 extends StatefulWidget {
 class _DogAnimation4 extends State<DogAnimation4> { 
   @override
   Widget build(BuildContext context) {
-    print("4");
+    //print("4");
     return Container(
       height: 400,
       child:FlareActor(

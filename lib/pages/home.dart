@@ -47,13 +47,14 @@ class HomePage extends State<Home> with WidgetsBindingObserver{
       if (totalSeconds < 1) {
         timer.cancel();
         Wakelock.disable();
-        //timerEnd();
       }
       else {
         totalSeconds = totalSeconds - 1;
-        remHours = (totalSeconds/3600).floor();
-        remMinutes = ((totalSeconds - remHours*3600)/60).floor();
-        remSeconds = totalSeconds - remMinutes*60 - remHours*3600;
+        setState(() {
+          remHours = (totalSeconds/3600).floor();
+          remMinutes = ((totalSeconds - remHours*3600)/60).floor();
+          remSeconds = totalSeconds - remMinutes*60 - remHours*3600;
+        });
         print(totalSeconds);
       }
     }));
@@ -101,7 +102,7 @@ class HomePage extends State<Home> with WidgetsBindingObserver{
     remHours = 0;
     Wakelock.disable();
 
-    print("you're a consequence");
+    //print("you're a consequence");
 
     List<Widget> actions = [
       FlatButton(
@@ -132,19 +133,19 @@ class HomePage extends State<Home> with WidgetsBindingObserver{
     super.didChangeAppLifecycleState(state);
     switch(state){
       case AppLifecycleState.paused:
-        print('paused state');
+        //print('paused state');
         break;
       case AppLifecycleState.resumed:
-        print('resumed state');
+        //print('resumed state');
         break;
       case AppLifecycleState.inactive:
-        print('inactive state');
+        //print('inactive state');
         if(_timer.isActive) {
           consequences();
         }
         break;
       case AppLifecycleState.detached: 
-        print("detached state"); 
+        //print("detached state"); 
         break;
     }
   }
@@ -181,9 +182,10 @@ class HomePage extends State<Home> with WidgetsBindingObserver{
   Widget build(BuildContext context) {
     if(_timer == null) {
       _timer = Timer.periodic(Duration(seconds:0), null);
-      print("null init");
+      //print("null init");
       _timer.cancel();
     }
+    print((formatter.format(remHours) + ":" + formatter.format(remMinutes) + ":" + formatter.format(remSeconds)));
     return Scaffold(
       backgroundColor: Color.fromRGBO(39, 42, 86, 1),
       body: Stack(
@@ -270,7 +272,7 @@ class HomePage extends State<Home> with WidgetsBindingObserver{
         selectedIndex: _currentIndex,
         onItemSelected: (index) {
           bottomTapped(index);
-          print(index);
+          //print(index);
         },
         items: <BottomNavyBarItem>[
           BottomNavyBarItem(title: Text('Home'), icon: Icon(Icons.home), activeColor: Color.fromRGBO(39, 42, 86, 1)),
@@ -290,15 +292,17 @@ class HomePage extends State<Home> with WidgetsBindingObserver{
           isArray: true,
         ),
         onConfirm: (Picker picker, List value) {
-          print(value.toString());
-          print(picker.getSelectedValues());
+          //print(value.toString());
+          //print(picker.getSelectedValues());
           hours = value[0];
           minutes = value[1];
-          print(hours);
-          print(minutes);
+          remHours = hours;
+          remMinutes = minutes;
+          //print(hours);
+          //print(minutes);
           startTimer();
           if(hours!=0 || minutes!=0){
-            print("we tapped the bottom");
+            //print("we tapped the bottom");
             bottomTapped(0);
           }
         });

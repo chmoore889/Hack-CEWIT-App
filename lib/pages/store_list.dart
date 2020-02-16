@@ -27,7 +27,7 @@ class _Store extends State<Store> {
     if(_counter>=4){
       _counter = 0;
     }
-    print(_counter);
+    //print(_counter);
   }
 
   @override
