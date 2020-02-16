@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_picker/flutter_picker.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:wakelock/wakelock.dart';
 
 import 'profile.dart';
 import 'dashboard.dart';
@@ -38,12 +39,14 @@ class HomePage extends State<Home> with WidgetsBindingObserver{
 
   void startTimer() {
     totalSeconds = minutes*60+hours*3600;
+    Wakelock.enable();
     _timer.cancel();
     
     const oneSec = const Duration(seconds: 1);
     _timer = new Timer.periodic(oneSec, (Timer timer) => setState(() {
       if (totalSeconds < 1) {
         timer.cancel();
+        Wakelock.disable();
         //timerEnd();
       }
       else {
@@ -71,6 +74,7 @@ class HomePage extends State<Home> with WidgetsBindingObserver{
               remMinutes = 0;
               remSeconds = 0;
               remHours = 0;
+              Wakelock.disable();
             });
           },
           child: new Text(PickerLocalizations.of(context).confirmText))
@@ -90,7 +94,40 @@ class HomePage extends State<Home> with WidgetsBindingObserver{
     );
   }
 
-    void didChangeAppLifecycleState(AppLifecycleState state) {
+  void consequences(){
+    _timer.cancel();
+    remMinutes = 0;
+    remSeconds = 0;
+    remHours = 0;
+    Wakelock.disable();
+
+    print("you're a consequence");
+
+    List<Widget> actions = [
+      FlatButton(
+          onPressed: () {
+            setState((){
+              Navigator.pop(context);
+            });
+          },
+          child: new Text(PickerLocalizations.of(context).confirmText))
+    ];
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return new AlertDialog(
+          title: Text("Consequences"),
+          actions: actions,
+          content: Container(
+            child: Text("U suck at this game")
+          ),
+        );
+      }
+    );
+  }
+
+  void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
     switch(state){
       case AppLifecycleState.paused:
@@ -101,13 +138,11 @@ class HomePage extends State<Home> with WidgetsBindingObserver{
         break;
       case AppLifecycleState.inactive:
         print('inactive state');
+        consequences();
         break;
-     // case AppLifecycleState.suspended:
-       // print('suspending state');
-        //break; 
       case AppLifecycleState.detached: 
         print("detached state"); 
-        break; 
+        break;
     }
   }
 
