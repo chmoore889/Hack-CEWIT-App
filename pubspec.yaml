@@ -41,16 +41,7 @@ dev_dependencies:
 flutter:
   assets:
     - assets/images/
-    - assets/dog.flr 
-    - assets/diego_full.flr
-    - assets/beach1.jpg
-    - assets/beach2.jpg
-    - assets/beach3.jpg
-    - assets/chris.jpg
-    - assets/speechbubble.png
-    - assets/navarrow.png
-    - assets/chatbubble.png
-    - assets/fav.png
+    - assets/
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

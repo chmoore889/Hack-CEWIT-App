@@ -62,22 +62,22 @@ class HomePage extends State<Home> with WidgetsBindingObserver{
   void timerForceEnd() {
     List<Widget> actions = [
       FlatButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: new Text(PickerLocalizations.of(context).cancelText)),
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        child: new Text(PickerLocalizations.of(context).cancelText)),
       FlatButton(
-          onPressed: () {
-            setState((){
-              Navigator.pop(context);
-              _timer.cancel();
-              remMinutes = 0;
-              remSeconds = 0;
-              remHours = 0;
-              Wakelock.disable();
-            });
-          },
-          child: new Text(PickerLocalizations.of(context).confirmText))
+        onPressed: () {
+          setState((){
+            Navigator.pop(context);
+            _timer.cancel();
+            remMinutes = 0;
+            remSeconds = 0;
+            remHours = 0;
+            Wakelock.disable();
+          });
+        },
+        child: new Text(PickerLocalizations.of(context).confirmText))
     ];
 
     showDialog(
@@ -105,12 +105,13 @@ class HomePage extends State<Home> with WidgetsBindingObserver{
 
     List<Widget> actions = [
       FlatButton(
-          onPressed: () {
-            setState((){
-              Navigator.pop(context);
-            });
-          },
-          child: new Text(PickerLocalizations.of(context).confirmText))
+        onPressed: () {
+          setState((){
+            Navigator.pop(context);
+          });
+        },
+        child: new Text(PickerLocalizations.of(context).confirmText)
+      )
     ];
 
     showDialog(
@@ -296,6 +297,10 @@ class HomePage extends State<Home> with WidgetsBindingObserver{
           print(hours);
           print(minutes);
           startTimer();
+          if(hours!=0 || minutes!=0){
+            print("we tapped the bottom");
+            bottomTapped(0);
+          }
         });
 
     List<Widget> actions = [

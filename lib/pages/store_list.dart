@@ -2,6 +2,20 @@ import 'FadeAnimation.dart';
 import 'Shoes.dart';
 import 'package:flutter/material.dart'; 
 class Store extends StatelessWidget {
+  static int _counter = 0;
+
+  static int getCount(){
+    return _counter;
+  }
+
+  void incrementCounter(){
+    _counter++;
+    if(_counter>=4){
+      _counter = 0;
+    }
+    print(_counter);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,9 +33,12 @@ class Store extends StatelessWidget {
               SizedBox(height: 15,),
               Text("182 points until next level", style: TextStyle(color: Color.fromRGBO(39, 42, 86, 1)),),
               SizedBox(height: 20,),
-              FadeAnimation(0, makeUnlockedItem(image: 'assets/images/one.png', tag: 'red', context: context)),
-              FadeAnimation(0, makeLockedItem(image: 'assets/images/two.png', tag: 'blue', context: context)),
-              FadeAnimation(0, makeLockedItem(image: 'assets/images/three.png', tag: 'white', context: context)),
+              FadeAnimation(0, makeUnlockedItem(image: 'assets/images/one.png', tag: 'hat', context: context, level: 2, title: "Cowboy Hat", subtitle: "A throwback to the wild west.")),
+              FadeAnimation(0, makeLockedItem(image: 'assets/images/two.png', tag: 'unnknown1', context: context, level: 5)),
+              FadeAnimation(0, makeLockedItem(image: 'assets/images/three.png', tag: 'unnknown2', context: context, level:11)),
+              
+              SizedBox(height: 30,),
+              FlatButton(onPressed: incrementCounter, child: Text("Next Level"))
             ],
           ),
         ),
@@ -29,7 +46,7 @@ class Store extends StatelessWidget {
     );
   }
 
-  Widget makeUnlockedItem({image, tag, context}) {
+  Widget makeUnlockedItem({image, tag, context, level, title, subtitle}) {
     return Hero(
       tag: tag,
       child: GestureDetector(
@@ -66,9 +83,9 @@ class Store extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        FadeAnimation(1, Text("Cowboy Hat", style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold),)),
+                        FadeAnimation(1, Text("$title", style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold),)),
                         SizedBox(height: 10,),
-                        FadeAnimation(1.1, Text("A throwback to the old west.", style: TextStyle(color: Colors.white, fontSize: 20),)),
+                        FadeAnimation(1.1, Text("$subtitle", style: TextStyle(color: Colors.white, fontSize: 20),)),
 
                       ],
                     ),
@@ -86,14 +103,14 @@ class Store extends StatelessWidget {
                   ))
                 ],
               ),
-              FadeAnimation(1.2, Text("Level 2", style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold),)),              
+              FadeAnimation(1.2, Text("Level $level", style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold),)),              
             ],
           ),
         ),
       ),
     );
   } 
-  Widget makeLockedItem({image, tag, context}) {
+  Widget makeLockedItem({image, tag, context, level}) {
     return Hero(
       tag: tag,
       child: GestureDetector(
@@ -150,7 +167,7 @@ class Store extends StatelessWidget {
                   ))
                 ],
               ),
-              FadeAnimation(1.2, Text("Level 5", style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold),)),              
+              FadeAnimation(1.2, Text("Level $level", style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold),)),              
             ],
           ),
         ),
