@@ -96,31 +96,31 @@ class SecondTab extends StatelessWidget {
           RecordItem(
               fontColor: _fontColor,
               smallFontSpacing: _smallFontSpacing,
-              day: "FRIDAY"),
+              day: "FRIDAY", date: "12/7/2020",),
           RecordItem(
               fontColor: _fontColor,
               smallFontSpacing: _smallFontSpacing,
-              day: "SATURDAY"),
+              day: "SATURDAY", date: "12/8/2020",),
           RecordItem(
               fontColor: _fontColor,
               smallFontSpacing: _smallFontSpacing,
-              day: "SUNDAY"),
+              day: "SUNDAY", date: "12/9/2020",),
           RecordItem(
               fontColor: _fontColor,
               smallFontSpacing: _smallFontSpacing,
-              day: "MONDAY"),
+              day: "MONDAY", date: "12/10/2020",),
           RecordItem(
               fontColor: _fontColor,
               smallFontSpacing: _smallFontSpacing,
-              day: "TUESDAY"),
+              day: "TUESDAY", date: "12/11/2020",),
           RecordItem(
               fontColor: _fontColor,
               smallFontSpacing: _smallFontSpacing,
-              day: "WEDNESDAY"),
+              day: "WEDNESDAY", date: "12/12/2020",),
           RecordItem(
               fontColor: _fontColor,
               smallFontSpacing: _smallFontSpacing,
-              day: "THURSDAY"),
+              day: "THURSDAY", date: "12/13/2020",),
         ],
       ),
     );
@@ -133,6 +133,7 @@ class RecordItem extends StatelessWidget {
     @required Color fontColor,
     @required double smallFontSpacing,
     @required this.day,
+    @required this.date,
   })  : _fontColor = fontColor,
         _smallFontSpacing = smallFontSpacing,
         super(key: key);
@@ -140,6 +141,7 @@ class RecordItem extends StatelessWidget {
   final Color _fontColor;
   final double _smallFontSpacing;
   final String day;
+  final String date;
 
   @override
   Widget build(BuildContext context) {
@@ -165,7 +167,7 @@ class RecordItem extends StatelessWidget {
           Row(
             children: <Widget>[
               Text(
-                "02/16/2020",
+                "$date",
                 style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w400,

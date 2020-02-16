@@ -199,8 +199,8 @@ class HomePage extends State<Home> with WidgetsBindingObserver{
                       width: 300.0,
                       height: 150.0,
                       decoration: BoxDecoration ( 
-                      borderRadius: BorderRadius.circular(25.0),  
-                      color: Color.fromRGBO(205, 136, 63, 1), 
+                        borderRadius: BorderRadius.circular(25.0),  
+                        color: Color.fromRGBO(205, 136, 63, 1), 
                         boxShadow: [
                           new BoxShadow(
                             color: Color.fromRGBO(251, 243, 217, 1),
