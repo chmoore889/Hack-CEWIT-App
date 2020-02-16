@@ -19,17 +19,18 @@ class Dashboard extends StatelessWidget {
             child: Home.timerRunning()?TyperAnimatedTextKit(
               speed: Duration(milliseconds:  50),
               text: [
-                "You’ve got it made!",
-                "Sensational!",
-                "You’re doing fine.",
-                "You’ve got your brain in gear today.", 
+                "Do or do not, there is no try.",
+                "Keep going. You're doing great!",
+                "Yes, you can!",
+                "Push yourself because no one else will.", 
+                "If you can dream it, you can do it."
               ],
-              textStyle: GoogleFonts.patrickHand(
+              textStyle: GoogleFonts.lato(
                 fontSize: 38
               ),
               textAlign: TextAlign.center,
               alignment: AlignmentDirectional.centerStart,
-              pause: Duration(milliseconds:  5000),
+              pause: Duration(milliseconds:  6000),
             ):null
           ),
           !Store.doesHaveHat()?((Store.getCount()==0)?DogAnimation1():(Store.getCount()==1)? DogAnimation2():(Store.getCount()==2)? DogAnimation3():DogAnimation4()):Hat(),

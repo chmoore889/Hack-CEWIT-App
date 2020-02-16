@@ -113,6 +113,11 @@ class HomePage extends State<Home> with WidgetsBindingObserver{
         onPressed: () {
           setState((){
             Navigator.pop(context);
+            _timer.cancel();
+            remMinutes = 0;
+            remSeconds = 0;
+            remHours = 0;
+            Wakelock.disable();
           });
         },
         child: new Text(PickerLocalizations.of(context).confirmText)
