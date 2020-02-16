@@ -15,7 +15,7 @@ class _Hat extends State<Hat> {
       height: 400,
       child:FlareActor(
         "assets/hat.flr",
-        animation: "hat",
+        animation: "hatanimation",
         fit:BoxFit.contain,
       )
     );

@@ -66,7 +66,12 @@ class _Store extends State<Store> {
       child: GestureDetector(
         onTap: () {
           setState(() {
-            hasHat=true;
+            if(hasHat){
+              hasHat=false;
+            }
+            else{
+              hasHat = true;
+            }
           });
         },
         child: Container(
@@ -111,10 +116,20 @@ class _Store extends State<Store> {
                     height: 35,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: hasHat?Colors.green:Colors.white
+                      color: Colors.white
                     ),
                     child: Center(
-                      child: Icon(Icons.add, size: 20,),
+                      child: AnimatedSwitcher(
+                        duration: const Duration(milliseconds: 250),
+                        transitionBuilder: (Widget child, Animation<double> animation) {
+                          return ScaleTransition(child: child, scale: animation);
+                        },
+                        child: Icon(
+                          !hasHat?Icons.add:Icons.remove,
+                          size: 20,
+                          key: ValueKey<int>(hasHat?1:2),
+                        ),
+                      ),
                     ),
                   ))
                 ],
