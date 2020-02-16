@@ -15,6 +15,10 @@ import 'dart:convert';
 import 'pickerData.dart';
 
 class Home extends StatefulWidget {
+  static bool timerRunning(){
+    return HomePage._timer.isActive;
+  }
+
   @override
   HomePage createState() => HomePage();
 }
@@ -27,14 +31,14 @@ class HomePage extends State<Home> with WidgetsBindingObserver{
 
   static int totalSeconds = minutes*60+hours*3600;
 
-  int remSeconds = 0;
-  int remMinutes = 0;
-  int remHours = 0;
+  static int remSeconds = 0;
+  static int remMinutes = 0;
+  static int remHours = 0;
 
-  PageController _pageController;
-  Timer _timer;
+  static PageController _pageController;
+  static Timer _timer;
 
-  int _currentIndex = 0;
+  static int _currentIndex = 0;
   Widget currentScreen = Dashboard();
 
   void startTimer() {
@@ -154,6 +158,11 @@ class HomePage extends State<Home> with WidgetsBindingObserver{
   void initState() {
     super.initState();
     _pageController = PageController();
+    if(_timer == null) {
+      _timer = Timer.periodic(Duration(seconds:0), null);
+      //print("null init");
+      _timer.cancel();
+    }
     WidgetsBinding.instance.addObserver(this);
   }
 
@@ -180,11 +189,6 @@ class HomePage extends State<Home> with WidgetsBindingObserver{
 
   @override
   Widget build(BuildContext context) {
-    if(_timer == null) {
-      _timer = Timer.periodic(Duration(seconds:0), null);
-      //print("null init");
-      _timer.cancel();
-    }
     print((formatter.format(remHours) + ":" + formatter.format(remMinutes) + ":" + formatter.format(remSeconds)));
     return Scaffold(
       backgroundColor: Color.fromRGBO(39, 42, 86, 1),

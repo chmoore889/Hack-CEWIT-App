@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'dog.dart';
 import 'store_list.dart';
+import 'home.dart';
 
 class Dashboard extends StatelessWidget {
   @override
@@ -15,7 +16,7 @@ class Dashboard extends StatelessWidget {
           Container(
             height: 115,
             padding: EdgeInsets.symmetric(vertical: 8.0),
-            child: TyperAnimatedTextKit(
+            child: Home.timerRunning()?TyperAnimatedTextKit(
               speed: Duration(milliseconds:  50),
               text: [
                 "You’ve got it made!",
@@ -29,7 +30,7 @@ class Dashboard extends StatelessWidget {
               textAlign: TextAlign.center,
               alignment: AlignmentDirectional.centerStart,
               pause: Duration(milliseconds:  5000),
-            ),
+            ):null
           ),
           !Store.doesHaveHat()?((Store.getCount()==0)?DogAnimation1():(Store.getCount()==1)? DogAnimation2():(Store.getCount()==2)? DogAnimation3():DogAnimation4()):Hat(),
         ]
