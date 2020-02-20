@@ -14,6 +14,17 @@ class _Dashboard extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Container (
+      decoration: BoxDecoration(
+        color: Colors.white, // Color.fromRGBO(251, 243, 217, 1),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(40.0),
+          topRight: Radius.circular(40.0)
+        ),
+        image: new DecorationImage(
+          image: new AssetImage('assets/background.jpg'),
+          fit: BoxFit.cover,
+        ),
+      ),
       child: Column(
         children: <Widget>[
           SizedBox(height: 10),

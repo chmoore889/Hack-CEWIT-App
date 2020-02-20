@@ -266,7 +266,8 @@ class HomePage extends State<Home> with WidgetsBindingObserver{
                   color: Colors.white, // Color.fromRGBO(251, 243, 217, 1),
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(40.0),
-                    topRight: Radius.circular(40.0)),
+                    topRight: Radius.circular(40.0)
+                  ),
                 ),
               ),
             ]
